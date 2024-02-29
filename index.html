@@ -41,10 +41,10 @@
  <h3>Reading infromation From a file, creating it and Traversing the resulting printed diagraph</h3>
  <pre><code>
     public boolean hasCycleTracker() {                        //Method tracks vertices to see if the graph has a cycle in it
-        boolean[] visited = new boolean[Vertices];            //Makes an array to keep track of visited vertices
+        boolean[] visited = new boolean[Vertices];            
         boolean[] recursiveStack = new boolean[Vertices];     //Makes an array to keep track of vertices in the recursion stack
 
-        for (int i = 0; i < Vertices; i++) {                  //Goes through all vertices
+        for (int i = 0; i < Vertices; i++) {                  
             if (hasCycle(i, visited, recursiveStack)) {       //Checks if there is a cycle starting from vertex i
                 return true;
             }
@@ -72,14 +72,14 @@
         boolean[] visited = new boolean[Vertices];                                  //Make an array to keep track of visited vertices
         List<Integer> result = new ArrayList<>();                                   //Makes a list to store the topological sort
         for (int i = 0; i < Vertices; i++) {                                        //Goes through all the vertices
-            if (visited[i] == false) {                                              // if vertex i is not visited, perform a DFS to add all its descendants to the result list
+            if (visited[i] == false) {                                              //If vertex i is not visited, perform a DFS to add all its descendants to the result list
                 topologicalSort(i, visited, result);
             }
         }
-        return result;                                                              // return the topological sort
+        return result;                                                              //Return the topological sort
     }
 
-    private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  // Method goes through the vertices and sorts them topologically
+    private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  //Method goes through the vertices and sorts them topologically
         visited[a] = true;// Mark the current vertex as visited
 
         for (int i : adjacent[a]) {
