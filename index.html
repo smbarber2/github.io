@@ -37,9 +37,80 @@
   <hr width = "100%" size = "2">
  
 <h2>Code Samples</h2> 
- <p>Samples of programs I have written for my classes.</p>
- <code> This is a sample of the code I wrote for my class</code>
-<p></p>
+ <p>Here are a few samples of programs I have written for CSC330, as it has been the most recent coding intesive class that I have completed.</p>
+ <h3>Reading infromation From a file, creating it and Traversing the resulting printed diagraph</h3>
+ <code>
+    public boolean hasCycleTracker() { //Method tracks vertices to see if the graph has a cycle in it
+        boolean[] visited = new boolean[Vertices];      //Makes an array to keep track of visited vertices
+        boolean[] recursiveStack = new boolean[Vertices];     //Makes an array to keep track of vertices in the recursion stack
+
+        for (int i = 0; i < Vertices; i++) {                  //Goes through all vertices
+            if (hasCycle(i, visited, recursiveStack)) {   //Checks if there is a cycle starting from vertex i
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasCycle(int b, boolean[] visited, boolean[] recursiveStack) {  //Method searches to see if the graph has a cycle in it
+        visited[b] = true;          //Marks vertex b as visited
+        recursiveStack[b] = true;   //Marks vertex b as being in the recursion stack
+
+        for (int i : adjacent[b]) { //Goes through all neighbors of vertex b
+            if (!visited[i] && hasCycle(i, visited, recursiveStack)) {  //If neighbor i is not visited and there is a cycle starting from i, return true
+                return true;
+            } else if (recursiveStack[i]) { // if neighbor i is already in the recursion stack, there is a cycle, return true
+                return true;
+            }
+        }
+
+        recursiveStack[b] = false; //Makes vertex b as no longer being in the recursion stack
+        return false;               //Returns false if there isn't a cycle
+    }
+
+    public List<Integer> topologicalSortTracker() {  //Method tracks the vertices to help sort them topologically
+        boolean[] visited = new boolean[Vertices];      //Make an array to keep track of visited vertices
+        List<Integer> result = new ArrayList<>();       //Makes a list to store the topological sort
+        for (int i = 0; i < Vertices; i++) {            //Goes through all the vertices
+            if (visited[i] == false) { // if vertex i is not visited, perform a DFS to add all its descendants to the result list
+                topologicalSort(i, visited, result);
+            }
+        }
+        return result; // return the topological sort
+    }
+
+    private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  // Method goes through the vertices and sorts them topologically
+        visited[a] = true;// Mark the current vertex as visited
+
+        for (int i : adjacent[a]) {
+            if (visited[i] == false) {
+                topologicalSort(i, visited, result);        //Recursively visit all the neighbors of the current vertex
+            }
+        }
+        //Once all the neighbors have been visited, it adds the current vertex to the front of the list
+        result.add(0, a);
+    }
+
+    public static void main(String[] args) {  //Main method reads the file, makes the diagraph
+        try {
+            Scanner scanner = new Scanner(new File("tinydigraph.txt")); //Reads the file for info
+            int Vertices = scanner.nextInt();
+            int Edges = scanner.nextInt();
+            Assignment4 digraph = new Assignment4(Vertices);      //new digraph
+            for (int i = 0; i < Edges; i++) {
+                int a = scanner.nextInt();
+                int b = scanner.nextInt();
+                digraph.addEdge(a, b);                //Adds an edge from vertex a to vertex b
+            }
+            scanner.close();
+             } catch (FileNotFoundException e) {  //Error in case file isn't found
+            e.printStackTrace();
+            System.out.println("File not found.");
+        }
+    }
+}
+
+/code>
  <p>To see the full file, <a href="Assignment4.java" download="">Download Here</a></p>
  <head>
 <style>
