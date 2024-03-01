@@ -43,7 +43,17 @@
 <h2>Code Samples</h2> 
  <p>Here are a few samples of programs I have written for CSC330, as it has been the most recent coding intesive class that I have completed.</p>
  <h3>Reading infromation From a file, creating it and Traversing the resulting printed diagraph. </h3><a href="Assignment4.java" download="">Download Full File Here</a>
- <pre><code>
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#more {display: none;}
+</style>
+</head>
+<body>
+
+<p> <pre><code>
     private boolean hasCycle(int b, boolean[] visited, boolean[] recursiveStack) {  //Method searches to see if the graph has a cycle in it
         visited[b] = true;                                                          //Marks vertex b as visited
         recursiveStack[b] = true;                                                   //Marks vertex b as being in the recursion stack
@@ -99,7 +109,45 @@
             System.out.println("File not found.");
         }
     }
+}</code></pre></p>
+
+<button onclick="myFunction()" id="myBtn">Read more</button>
+<script>
+function myFunction() {
+var dots = document.getElementById("dots");
+var moreText = document.getElementById("more");
+var btnText = document.getElementById("myBtn");
+
+if (dots.style.display === "none") {
+dots.style.display = "inline";
+btnText.innerHTML = "Read more";
+moreText.style.display = "none";
+} 
+else {
+dots.style.display = "none";
+btnText.innerHTML = "Read less";
+moreText.style.display = "inline";
 }
+}
+
+</script>
+</body>
+</html>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
 
  <h3>Different types of quick sorts with different pivots and a merge sort that are all later compared. </h3><a href="Assignment3.java" download="">Download Full File Here</a>
  <pre><code>public static int getPivotIndex(int[] arr, int left, int right, int choice) {   //This method obtains the pivot index depending on the type of sort that will be used
@@ -300,49 +348,30 @@ a:hover, a:active {
 #more {display: none;}
 
 </style>
-
 </head>
-
 <body>
-
-<h2>Read More Read Less Button</h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
 
 <button onclick="myFunction()" id="myBtn">Read more</button>
-
 <script>
-
 function myFunction() {
-
 var dots = document.getElementById("dots");
-
 var moreText = document.getElementById("more");
-
 var btnText = document.getElementById("myBtn");
 
 if (dots.style.display === "none") {
-
 dots.style.display = "inline";
-
 btnText.innerHTML = "Read more";
-
 moreText.style.display = "none";
-
-} else {
-
+} 
+else {
 dots.style.display = "none";
-
 btnText.innerHTML = "Read less";
-
 moreText.style.display = "inline";
-
 }
-
 }
 
 </script>
-
 </body>
-
 </html>
