@@ -43,8 +43,7 @@
 <h2>Code Samples</h2> 
  <p>Here are a few samples of programs I have written for CSC330, as it has been the most recent coding intesive class that I have completed.</p>
  <h3>Reading information from a file, creating it and traversing the resulting printed diagraph. </h3><a href="Assignment4.java" download="">Download Full File Here</a>
-
-
+ 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -135,11 +134,17 @@ moreText.style.display = "inline";
 </body>
 
 
- <h3>Different types of quick sorts with different pivots and a merge sort that are all later compared. </h3><a href="Assignment3.java" download="">Download Full File Here</a>
+ <h3>Different types of quick sorts with different pivots and a merge sort that are all later compared. </h3><a href="Assignment3.java" download="">Download Full File Here</a>   
+           
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#more {display: none;}
+</style>
+</head>
+<body>
 
-
-<body>     
-             <pre><code>public static int getPivotIndex(int[] arr, int left, int right, int choice) {   //This method obtains the pivot index depending on the type of sort that will be used
+<p> <pre><code>public static int getPivotIndex(int[] arr, int left, int right, int choice) {   //This method obtains the pivot index depending on the type of sort that will be used
         int pivotIndex = left;
         switch (choice) {
             case 1:                                                                 //Use first element as pivot
@@ -181,7 +186,8 @@ moreText.style.display = "inline";
         return storeIndex;
     }
 
-          <span id="dots">...</span><span id="more">
+<span id="dots">...</span><span id="more">
+         
     public static void performance() {                                            //Runs benchmarks for each sort and sees how long it takes to perform each sort while N grows
         Random random = new Random();
         int[] arr = random.ints(24, 0, 100).toArray();                            //Completely random array with 24 numbers
@@ -306,8 +312,7 @@ moreText.style.display = "inline";
             System.out.println("Mergesort is faster than Quicksort by: " + timeComp + " milliseconds.");      
         }
     }
-  
-</span></code></pre></p>
+ </span></code></pre></p>
 
 <button onclick="myFunction()" id="myBtn">Read more</button>
 <script>
@@ -330,17 +335,7 @@ moreText.style.display = "inline";
 
 </script>
 </body>
-
- <head>
-<style>
-a:link, a:visited {
-  background-color: #594f8f;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
+         
 
 a:hover, a:active {
   background-color: #363057;
