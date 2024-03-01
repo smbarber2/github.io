@@ -255,6 +255,14 @@ moreText.style.display = "inline";
 
 
  <h3>Different types of quick sorts with different pivots and a merge sort that are all later compared. </h3><a href="Assignment3.java" download="">Download Full File Here</a>   
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#more {display: none;}
+</style>
+</head>
+<body>
+
 <p> <pre><code>
     private boolean hasCycle(int b, boolean[] visited, boolean[] recursiveStack) {  //Method searches to see if the graph has a cycle in it
         visited[b] = true;                                                          //Marks vertex b as visited
@@ -282,7 +290,8 @@ moreText.style.display = "inline";
         }
         return result;                                                              //Return the topological sort
     }
-          
+
+         <span id="dots">...</span><span id="more">
     private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  //Method goes through the vertices and sorts them topologically
         visited[a] = true;// Mark the current vertex as visited
 
@@ -311,8 +320,30 @@ moreText.style.display = "inline";
             System.out.println("File not found.");
         }
     }
-}</code></pre></p>
+}</span></code></pre></p>
 
+
+<button onclick="readMoreTwo()" id="myBtn">Read more</button>
+<script>
+function readMoreTwo() {
+var dots = document.getElementById("dots");
+var moreText = document.getElementById("more");
+var btnText = document.getElementById("myBtn");
+
+if (dots.style.display === "none") {
+dots.style.display = "inline";
+btnText.innerHTML = "Read more";
+moreText.style.display = "none";
+} 
+else {
+dots.style.display = "none";
+btnText.innerHTML = "Read less";
+moreText.style.display = "inline";
+}
+}
+
+<p></p>
+ <h3>Contact me!</h3>
          
 <head>
 <style>
