@@ -42,7 +42,7 @@
  
 <h2>Code Samples</h2> 
  <p>Here are a few samples of programs I have written for CSC330, as it has been the most recent coding intesive class that I have completed.</p>
- <h3>Reading infromation From a file, creating it and Traversing the resulting printed diagraph. </h3><a href="Assignment4.java" download="">Download Full File Here</a>
+ <h3>Reading information from a file, creating it and traversing the resulting printed diagraph. </h3><a href="Assignment4.java" download="">Download Full File Here</a>
 
 
 <head>
@@ -69,7 +69,8 @@
         recursiveStack[b] = false;                                                  //Makes vertex b as no longer being in the recursion stack
         return false;                                                               //Returns false if there isn't a cycle
     }
-
+ 
+<span id="dots">...</span><span id="more">
     public List<Integer> topologicalSortTracker() {                                 //Method tracks the vertices to help sort them topologically
         boolean[] visited = new boolean[Vertices];                                  //Make an array to keep track of visited vertices
         List<Integer> result = new ArrayList<>();                                   //Makes a list to store the topological sort
@@ -80,8 +81,6 @@
         }
         return result;                                                              //Return the topological sort
     }
-
-         <span id="dots">...</span><span id="more">
           
     private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  //Method goes through the vertices and sorts them topologically
         visited[a] = true;// Mark the current vertex as visited
@@ -136,23 +135,16 @@ moreText.style.display = "inline";
 </body>
 </html>
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
  <h3>Different types of quick sorts with different pivots and a merge sort that are all later compared. </h3><a href="Assignment3.java" download="">Download Full File Here</a>
- <pre><code>public static int getPivotIndex(int[] arr, int left, int right, int choice) {   //This method obtains the pivot index depending on the type of sort that will be used
+
+        <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#more {display: none;}
+</style>
+</head>
+<body>     
+             <pre><code>public static int getPivotIndex(int[] arr, int left, int right, int choice) {   //This method obtains the pivot index depending on the type of sort that will be used
         int pivotIndex = left;
         switch (choice) {
             case 1:                                                                 //Use first element as pivot
@@ -193,7 +185,8 @@ moreText.style.display = "inline";
         swap(arr, storeIndex, right);      
         return storeIndex;
     }
-  
+
+          <span id="dots">...</span><span id="more">
     public static void performance() {                                            //Runs benchmarks for each sort and sees how long it takes to perform each sort while N grows
         Random random = new Random();
         int[] arr = random.ints(24, 0, 100).toArray();                            //Completely random array with 24 numbers
@@ -319,41 +312,7 @@ moreText.style.display = "inline";
         }
     }
   
-</code></pre>
-
- <head>
-<style>
-a:link, a:visited {
-  background-color: #594f8f;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a:hover, a:active {
-  background-color: #363057;
-}
-</style>
-</head>
-</html>
-
-         <html>
-
-<head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-
-#more {display: none;}
-
-</style>
-</head>
-<body>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+</span></code></pre></p>
 
 <button onclick="myFunction()" id="myBtn">Read more</button>
 <script>
@@ -376,4 +335,22 @@ moreText.style.display = "inline";
 
 </script>
 </body>
+</html>
+
+ <head>
+<style>
+a:link, a:visited {
+  background-color: #594f8f;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: #363057;
+}
+</style>
+</head>
 </html>
