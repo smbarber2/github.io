@@ -221,9 +221,9 @@
     } </span></code></pre></p>
 
 
-<button onclick="myFunction()" id="myBtn">Read more</button>
+<button onclick="readMore()" id="myBtn">Read more</button>
 <script>
-function myFunction() {
+function readMore() {
 var dots = document.getElementById("dots");
 var moreText = document.getElementById("more");
 var btnText = document.getElementById("myBtn");
@@ -337,10 +337,10 @@ body {
 </head>
 <body>
  <p></p>
-<button onclick="myFunction()">Toggle dark mode</button>
+<button onclick="darkMode()">Toggle dark mode</button>
 
 <script>
-function myFunction() {
+function darkMode() {
    var element = document.body;
    element.classList.toggle("dark-mode");
 }
