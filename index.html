@@ -42,18 +42,6 @@
  <p>Here are a few samples of programs I have written for CSC330, as it has been the most recent coding intesive class that I have completed.</p>
  <h3>Reading infromation From a file, creating it and Traversing the resulting printed diagraph. </h3><a href="Assignment4.java" download="">Download Full File Here</a>
  <pre><code>
-    public boolean hasCycleTracker() {                        //Method tracks vertices to see if the graph has a cycle in it
-        boolean[] visited = new boolean[Vertices];            
-        boolean[] recursiveStack = new boolean[Vertices];     //Makes an array to keep track of vertices in the recursion stack
-
-        for (int i = 0; i < Vertices; i++) {                  
-            if (hasCycle(i, visited, recursiveStack)) {       //Checks if there is a cycle starting from vertex i
-                return true;
-            }
-        }
-        return false;
-    }
-
     private boolean hasCycle(int b, boolean[] visited, boolean[] recursiveStack) {  //Method searches to see if the graph has a cycle in it
         visited[b] = true;                                                          //Marks vertex b as visited
         recursiveStack[b] = true;                                                   //Marks vertex b as being in the recursion stack
@@ -153,23 +141,7 @@
         swap(arr, storeIndex, right);      
         return storeIndex;
     }
-
-    private static void swap(int[] arr, int i, int j) {                            //Swaps values
-        int temp = arr[i];
-        arr[i] = arr[j];        
-        arr[j] = temp;
-    }
-
-    public static boolean isSorted(int[] arr) {                                    //Checks to see if the array is sorted or not
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < arr[i - 1]) {                                             //If an element on the array is less than the one that comes before it, it's not sorted
-                return false;
-            }
-        }
-        return true;
-    }
-
-    
+  
     public static void performance() {                                            //Runs benchmarks for each sort and sees how long it takes to perform each sort while N grows
         Random random = new Random();
         int[] arr = random.ints(24, 0, 100).toArray();                            //Completely random array with 24 numbers
