@@ -8,39 +8,3 @@
 }
 
 
-.hidden {
-  display: none;
-}
-
-.view-more:not(:checked) ~ label,
-.view-more:checked ~ .hidden {
-  display: block;
-}
-
-.view-more,
-.view-more:checked ~ label {
-  display: none;
-}
-
-
-/*
-================================
-  demo above!
-================================
-*/
-
-body { margin: 5px; }
-
-.box {
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-  margin: 5px 0 0 5px;
-  background-color: red;
-}
-
-label {
-  margin: 5px;
-  cursor: pointer;
-  width: 5em;
-}
