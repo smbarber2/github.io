@@ -291,7 +291,7 @@ moreText.style.display = "inline";
         return result;                                                              //Return the topological sort
     }
 
-         <span id="dots">...</span><span id="more">
+         <span id="dots1">...</span><span id="more1">
     private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  //Method goes through the vertices and sorts them topologically
         visited[a] = true;// Mark the current vertex as visited
 
@@ -323,25 +323,26 @@ moreText.style.display = "inline";
 }</span></code></pre></p>
 
 
-<button onclick="readMoreTwo()" id="myBtn">Read more</button>
+<button onclick="readMoreTwo()" id="myBtn1">Read more</button>
 <script>
 function readMoreTwo() {
-var dots = document.getElementById("dots");
-var moreText = document.getElementById("more");
-var btnText = document.getElementById("myBtn");
+var dots1 = document.getElementById("dots1");
+var moreText1 = document.getElementById("more1");
+var btnText1 = document.getElementById("myBtn1");
 
-if (dots.style.display === "none") {
-dots.style.display = "inline";
+if (dots1.style.display === "none") {
+dots1.style.display = "inline";
 btnText.innerHTML = "Read more";
 moreText.style.display = "none";
 } 
 else {
-dots.style.display = "none";
+dots1.style.display = "none";
 btnText.innerHTML = "Read less";
 moreText.style.display = "inline";
 }
 }
 
+ <hr width = "100%" size = "2">
 <p></p>
  <h3>Contact me!</h3>
          
