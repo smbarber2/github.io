@@ -52,64 +52,175 @@
 </head>
 <body>
 
-<p> <pre><code>
-    private boolean hasCycle(int b, boolean[] visited, boolean[] recursiveStack) {  //Method searches to see if the graph has a cycle in it
-        visited[b] = true;                                                          //Marks vertex b as visited
-        recursiveStack[b] = true;                                                   //Marks vertex b as being in the recursion stack
+<p> <pre><code>public static int getPivotIndex(int[] arr, int left, int right, int choice) {   //This method obtains the pivot index depending on the type of sort that will be used
+        int pivotIndex = left;
+        switch (choice) {
+            case 1:                                                                 //Use first element as pivot
+                return left;
+            case 2:                                                                 //Use middle element as pivot
+                pivotIndex = (left + right) / 2;
+                break;
+            case 3:                                                                 //Use random element as pivot
+                pivotIndex = new Random().nextInt(right - left + 1) + left;
+                break;
+            case 4:                                                                 //Use median of 3 as pivot
+                int mid = (left + right) / 2;
+                if (arr[left] > arr[mid]) {                                         //If the left is greater than the middle, perform a swap.
+                    swap(arr, left, mid);
+                }
+                if (arr[mid] > arr[right]) {                                        //If the middle is greater than the right, perform a swap.
+                    swap(arr, mid, right);
+                    if (arr[left] > arr[mid]) {                                     //If the left is greater than the middle, perform a swap.
+                        swap(arr, left, mid);
+                    }
+                }
+                pivotIndex = mid;
+                break;
+        }
+        return pivotIndex;
+    }
 
-        for (int i : adjacent[b]) { //Goes through all neighbors of vertex b
-            if (!visited[i] && hasCycle(i, visited, recursiveStack)) {              //If neighbor i is not visited and there is a cycle starting from i, return true
-                return true;
-            } else if (recursiveStack[i]) {                                         // if neighbor i is already in the recursion stack, there is a cycle, return true
-                return true;
+    private static int partition(int[] arr, int left, int right, int pivot) {      //Finds the partition in the array in relation to the pivot
+        int pivotValue = arr[pivot];                                               //The pivot value is set as the location of the pivot within the array
+        swap(arr, pivot, right);        
+        int storeIndex = left;
+        for (int i = left; i < right; i++) {
+            if (arr[i] < pivotValue) {                                             //If the array location is less than the pivot, it swaps
+                swap(arr, i, storeIndex);       
+                storeIndex++;
             }
         }
-
-        recursiveStack[b] = false;                                                  //Makes vertex b as no longer being in the recursion stack
-        return false;                                                               //Returns false if there isn't a cycle
+        swap(arr, storeIndex, right);      
+        return storeIndex;
     }
- 
+
 <span id="dots">...</span><span id="more">
-    public List<Integer> topologicalSortTracker() {                                 //Method tracks the vertices to help sort them topologically
-        boolean[] visited = new boolean[Vertices];                                  //Make an array to keep track of visited vertices
-        List<Integer> result = new ArrayList<>();                                   //Makes a list to store the topological sort
-        for (int i = 0; i < Vertices; i++) {                                        //Goes through all the vertices
-            if (visited[i] == false) {                                              //If vertex i is not visited, perform a DFS to add all its descendants to the result list
-                topologicalSort(i, visited, result);
-            }
-        }
-        return result;                                                              //Return the topological sort
-    }
-          
-    private void topologicalSort(int a, boolean[] visited, List<Integer> result) {  //Method goes through the vertices and sorts them topologically
-        visited[a] = true;// Mark the current vertex as visited
+         
+    public static void performance() {                                            //Runs benchmarks for each sort and sees how long it takes to perform each sort while N grows
+        Random random = new Random();
+        int[] arr = random.ints(24, 0, 100).toArray();                            //Completely random array with 24 numbers
+                                                                                  // Sort using each pivot choice and measure the time it takes for different array sizes
+        int[] pivotOptions = {1, 2, 3, 4};          
+        int[] arraySizes = {1000, 2000, 3000, 4000, 5000};                        //The five sizes N will be at when testing
+        int numTrials = 10;
 
-        for (int i : adjacent[a]) {
-            if (visited[i] == false) {
-                topologicalSort(i, visited, result);                                //Recursively visit all the neighbors of the current vertex
+        for (int pivot : pivotOptions) {
+            System.out.println("____________________________________________________________________________________");
+            System.out.println("*************************************BENCHMARKS*************************************");
+            System.out.println("Pivot choice: " + pivot);
+            for (int N : arraySizes) {
+                int[] testArr = Arrays.copyOfRange(arr, 0, N);                    //copies from the original array
+                long totalTime = 0;
+                for (int t = 0; t < numTrials; t++) {                             //checks to make sure it hasn't run too many trials
+                    int[] copyArr = Arrays.copyOf(testArr, testArr.length);
+                    long start = System.nanoTime();                               //captures the time before the sort begins, with nanoTime being more precise than currentTimeMillies
+                    quickSort(copyArr, 0, copyArr.length - 1, pivot);
+                    long end = System.nanoTime();                                 //captures the time after the sort, with nanoTime being more precise than currentTimeMillies
+                    totalTime += end - start;
+
+                }
+                System.out.println("N: " + N + ", Average time (milliseconds): " + (totalTime / numTrials / 1000000.0) + "\n");     //prints out the total time it takes
             }
         }
-        result.add(0, a);                                                           //Once all the neighbors have been visited, it adds the current vertex to the front of the list
     }
 
-    public static void main(String[] args) {                                        //Main method reads the file, makes the diagraph
-        try {
-            Scanner scanner = new Scanner(new File("tinydigraph.txt"));             //Reads the file for info
-            int Vertices = scanner.nextInt();
-            int Edges = scanner.nextInt();
-            Assignment4 digraph = new Assignment4(Vertices);                        //new digraph
-            for (int i = 0; i < Edges; i++) {
-                int a = scanner.nextInt();
-                int b = scanner.nextInt();
-                digraph.addEdge(a, b);                                              //Adds an edge from vertex a to vertex b
-            }
-            scanner.close();
-             } catch (FileNotFoundException e) {                                    //Error in case file isn't found
-            e.printStackTrace();
-            System.out.println("File not found.");
+    public static void mergeSortArray() {                                         //Margesort array running alongside the rest
+        Random random = new Random();
+        int[] arr = random.ints(24, 0, 100).toArray();                            //Completely random array with 24 numbers
+        System.out.println("_________________________________Merge Sort_________________________________________");
+        System.out.println("Unsorted array: " + Arrays.toString(arr));
+
+        mergeSort(arr, 0, arr.length - 1);      
+
+        System.out.println("Sorted array: " + Arrays.toString(arr));
+
+        if (isSorted(arr)) {
+            System.out.println("The array is sorted.");                          //If the merge sort passes through the isSorted() method successfully, it has been sorted
+        } else {
+            System.out.println("The array is not sorted.");
+        }
+        sortComparison(); 
+    }
+
+    public static void mergeSort(int[] arr, int left, int right) {              //Sorts the array through divide and conquer
+        if (left < right) {                                                     //If the start is less than the right, execute the if statement
+            int mid = (left + right) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);                                     //Recurseivly parses through the array
+            merge(arr, left, mid, right);
         }
     }
-}</span></code></pre></p>
+
+    public static void merge(int[] arr, int left, int mid, int right) {         //The actual merging of values within the given array to sort them
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        int[] L = new int[n1];      
+        int[] R = new int[n2];
+
+        for (int i = 0; i < n1; i++) {
+            L[i] = arr[left + i];                                               //Left side of the array
+        }
+
+        for (int j = 0; j < n2; j++) {
+            R[j] = arr[mid + 1 + j];                                            //Right side of the array
+        }
+
+        int i = 0, j = 0, k = left;
+
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];                                                  //If the left side is less than or equal to the right, keep it as left
+                i++;
+            } else {
+                arr[k] = R[j];                                                  //Else, keep it as the right
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = L[i];                                                      //As long as i is less than n1, keep it as left
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = R[j];                                                     //As long as i is less than n2, keep it as left
+            j++;
+            k++;
+        }
+    }
+
+    
+    public static void sortComparison() {                                      // Compares the speeds of the two sorting methods to see which is fastest
+        Random random = new Random();
+        int[] arr1 = random.ints(24, 0, 100).toArray();                        //Completely random array with 24 numbers
+        int[] arr2 = arr1.clone();
+
+        long start1 = System.nanoTime();                                       //Checks the time before the sort
+        mergeSort(arr1, 0, arr1.length - 1);                                   //Executes the sort
+        long end1 = System.nanoTime();                                         //Checks the time after the sort
+        long timeMerge = end1 - start1;                                        //Finds the total time taken
+        System.out.println("------------------------------------------");
+        System.out.println("MergeSort: " + timeMerge + " milliseconds");       //Prints results
+
+        long start2 = System.nanoTime();           
+        quickSort(arr2, 0, arr2.length - 1, 2);    
+        long end2 = System.nanoTime();            
+        long timeQuick = end2 - start2;             
+        System.out.println("QuickSort: " + timeQuick + " milliseconds");
+        System.out.println("------------------------------------------");   
+
+        if (timeQuick < timeMerge) {
+            long timeComp = timeMerge - timeQuick;
+            System.out.println("Quicksort is faster than Mergesort by: " + timeComp + " milliseconds.");      
+        } else {
+            long timeComp = timeQuick - timeMerge;
+            System.out.println("Mergesort is faster than Quicksort by: " + timeComp + " milliseconds.");      
+        }
+    } </span></code></pre></p>
+
 
 <button onclick="myFunction()" id="myBtn">Read more</button>
 <script>
